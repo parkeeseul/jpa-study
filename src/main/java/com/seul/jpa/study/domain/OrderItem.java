@@ -21,4 +21,12 @@ public class OrderItem {
 
     private int orderPrice;
     private int count;
+
+    protected OrderItem(long id, Item item, Order oder, int orderPrice, int count) {
+        this.id = id;
+        this.item = item;
+        this.oder = oder;
+        this.orderPrice = orderPrice;
+        this.count = count;
+    }
 }

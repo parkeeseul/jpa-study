@@ -28,4 +28,13 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    protected Order(long id, Member member, List<OrderItem> orderItems, Delivery delivery, LocalDateTime orderDate, OrderStatus status) {
+        this.id = id;
+        this.member = member;
+        this.orderItems = orderItems;
+        this.delivery = delivery;
+        this.orderDate = orderDate;
+        this.status = status;
+    }
 }

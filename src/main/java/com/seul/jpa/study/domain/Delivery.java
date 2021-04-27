@@ -17,4 +17,11 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
+
+    protected Delivery(long id, Order order, Address address, DeliveryStatus status) {
+        this.id = id;
+        this.order = order;
+        this.address = address;
+        this.status = status;
+    }
 }
