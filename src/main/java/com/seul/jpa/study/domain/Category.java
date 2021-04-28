@@ -1,6 +1,8 @@
 package com.seul.jpa.study.domain;
 
 import com.seul.jpa.study.domain.item.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.List;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
+@Getter
+@Setter
 public class Category {
 
     @Id @GeneratedValue
@@ -36,5 +40,11 @@ public class Category {
         this.items = items;
         this.parent = parent;
         this.child = child;
+    }
+
+    // 연관관계 메서드
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
     }
 }

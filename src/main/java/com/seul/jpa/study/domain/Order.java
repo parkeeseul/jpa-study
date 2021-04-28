@@ -11,7 +11,8 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "orders")
 public class Order {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_id")
     private long id;
 
@@ -38,5 +39,21 @@ public class Order {
         this.delivery = delivery;
         this.orderDate = orderDate;
         this.status = status;
+    }
+
+    // 연관관계 메서드
+    public void setMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
     }
 }
