@@ -19,10 +19,10 @@ public class Order {
     @JoinColumn(name = "member_id") // 연관 관계의 주인
     private Member member;
 
-    @OneToMany(mappedBy = "oder")
+    @OneToMany(mappedBy = "oder", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = LAZY)
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
