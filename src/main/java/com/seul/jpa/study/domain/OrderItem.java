@@ -1,12 +1,16 @@
 package com.seul.jpa.study.domain;
 
 import com.seul.jpa.study.domain.item.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
+@Getter
+@Setter
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -19,15 +23,15 @@ public class OrderItem {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
-    private Order oder;
+    private Order order;
 
     private int orderPrice;
     private int count;
 
-    protected OrderItem(long id, Item item, Order oder, int orderPrice, int count) {
+    protected OrderItem(long id, Item item, Order order, int orderPrice, int count) {
         this.id = id;
         this.item = item;
-        this.oder = oder;
+        this.order = order;
         this.orderPrice = orderPrice;
         this.count = count;
     }
