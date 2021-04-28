@@ -22,7 +22,7 @@ public abstract class Item {
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 
-    protected Item(long id, String name, int price, int stockQuantity, List<Category> categories) {
+    protected Item(String name, int price, int stockQuantity, List<Category> categories) {
         this.id = id;
         this.name = name;
         this.price = price;

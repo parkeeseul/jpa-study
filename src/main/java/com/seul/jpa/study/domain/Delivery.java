@@ -2,6 +2,8 @@ package com.seul.jpa.study.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class Delivery {
 
@@ -9,7 +11,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private long id;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = LAZY)
     private Order order;
 
     @Embedded
