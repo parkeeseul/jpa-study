@@ -20,7 +20,7 @@ public class Order {
     @JoinColumn(name = "member_id") // 연관 관계의 주인
     private Member member;
 
-    @OneToMany(mappedBy = "oder", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)

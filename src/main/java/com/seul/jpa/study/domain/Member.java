@@ -23,10 +23,13 @@ public class Member {
     @OneToMany(mappedBy = "member") // Order.member 와 맵핑 되는 정보 (연관 관계의 주인 X)
     private List<Order> orders = new ArrayList<>();
 
-    protected Member(long id, String name, Address address, List<Order> orders) {
-        this.id = id;
+    protected Member(String name, Address address, List<Order> orders) {
         this.name = name;
         this.address = address;
         this.orders = orders;
+    }
+
+    public static Member of (String name, Address address, List<Order> orders) {
+        return new Member(name, address, orders);
     }
 }

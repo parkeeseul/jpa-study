@@ -1,6 +1,7 @@
 package com.seul.jpa.study.repository;
 
 import com.seul.jpa.study.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,10 +11,13 @@ import javax.persistence.PersistenceUnit;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
+
+//    @PersistenceContext //  == @Autowired (Spring Data JPA 를 사용하면 @Autowired 지원)
+//    private EntityManager em;
 
 //    @PersistenceUnit
 //    private EntityManagerFactory emf;
@@ -32,7 +36,7 @@ public class MemberRepository {
     }
 
     public List<Member> findByName(String name) {
-        return em.createQuery("SELECT m FROM Memeber m WHERE m.name = :NAME", Member.class)
+        return em.createQuery("SELECT m FROM Member m WHERE m.name = :NAME", Member.class)
                 .setParameter("NAME", name)
                 .getResultList();
     }
