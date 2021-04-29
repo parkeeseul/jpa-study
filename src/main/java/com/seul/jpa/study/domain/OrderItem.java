@@ -28,11 +28,24 @@ public class OrderItem {
     private int orderPrice;
     private int count;
 
-    protected OrderItem(long id, Item item, Order order, int orderPrice, int count) {
-        this.id = id;
+    private OrderItem(Item item, int orderPrice, int count) {
         this.item = item;
-        this.order = order;
         this.orderPrice = orderPrice;
         this.count = count;
+    }
+
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem(item, orderPrice, count);
+
+        item.removeStock(count);
+        return orderItem;
+    }
+
+    public void cancel() {
+        this.item.addStock(count);
+    }
+
+    public int getTotalPrice() {
+        return this.orderPrice * this.count;
     }
 }
