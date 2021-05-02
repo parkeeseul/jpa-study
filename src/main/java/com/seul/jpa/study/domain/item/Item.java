@@ -27,11 +27,10 @@ public abstract class Item {
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 
-    protected Item(String name, int price, int stockQuantity, List<Category> categories) {
+    protected Item(String name, int price, int stockQuantity) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
-        this.categories = categories;
     }
 
     // 비즈니스 로직
