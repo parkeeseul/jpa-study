@@ -1,5 +1,9 @@
 package com.seul.jpa.study.domain;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,7 +12,9 @@ import java.util.List;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
+@Getter
 @Table(name = "orders")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id
@@ -20,7 +26,7 @@ public class Order {
     @JoinColumn(name = "member_id") // 연관 관계의 주인
     private Member member;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // Lifecycle 이 같을 때 cascade가 의미가 있다( Order 에서만 OrderItem을 사용한다)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)

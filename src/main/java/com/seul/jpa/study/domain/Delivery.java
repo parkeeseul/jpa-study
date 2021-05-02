@@ -25,10 +25,11 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
 
-    protected Delivery(long id, Order order, Address address, DeliveryStatus status) {
-        this.id = id;
-        this.order = order;
+    private Delivery(Address address) {
         this.address = address;
-        this.status = status;
+    }
+
+    public static Delivery createDelivery(Address address) {
+        return new Delivery(address);
     }
 }
