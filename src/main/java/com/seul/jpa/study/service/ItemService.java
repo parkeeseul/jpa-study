@@ -1,5 +1,6 @@
 package com.seul.jpa.study.service;
 
+import com.seul.jpa.study.domain.item.Book;
 import com.seul.jpa.study.domain.item.Item;
 import com.seul.jpa.study.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,12 @@ public class ItemService {
     @Transactional
     public void saveItem(Item item) {
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public void updateItem(long itemId, String name, int price, int stockQuantity) {
+        Item findItem = itemRepository.findOne(itemId);
+        findItem.change(name, price, stockQuantity);
     }
 
     public List<Item> findItems() {
