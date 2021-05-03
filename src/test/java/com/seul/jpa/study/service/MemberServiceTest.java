@@ -27,7 +27,7 @@ class MemberServiceTest {
     void 회원_가입() {
         // given
         Address address = Address.of("1", "2", "3");
-        Member member = Member.of("park", address, new ArrayList<>());
+        Member member = Member.of("park", address);
 
         // when
         long savedId = memberService.join(member);
@@ -46,10 +46,10 @@ class MemberServiceTest {
     void 중복_회원_예외() {
         // given
         Address address1 = Address.of("1", "2", "3");
-        Member member1 = Member.of("park", address1, new ArrayList<>());
+        Member member1 = Member.of("park", address1);
 
         Address address2 = Address.of("1", "2", "3");
-        Member member2 = Member.of("park", address2, new ArrayList<>());
+        Member member2 = Member.of("park", address2);
 
         // when
         memberService.join(member1);

@@ -3,6 +3,7 @@ package com.seul.jpa.study.domain.item;
 import com.seul.jpa.study.domain.Category;
 import com.seul.jpa.study.exception.NotEnoughException;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "dtype")
 @Getter
 @Setter
+@NoArgsConstructor
 public abstract class Item {
 
     @Id @GeneratedValue

@@ -36,7 +36,7 @@ class OrderServiceTest {
     void setUp() {
         Address address = Address.of("서울", "거리", "123-123");
 
-        member = Member.of("seul", address, new ArrayList<>());
+        member = Member.of("seul", address);
         em.persist(member);
 
         item = Book.createBook("JPA", price, stockQuantity, "김영한", "1234-5678");
