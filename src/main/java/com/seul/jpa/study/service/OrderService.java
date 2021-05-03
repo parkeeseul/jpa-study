@@ -8,9 +8,12 @@ import com.seul.jpa.study.domain.item.Item;
 import com.seul.jpa.study.repository.ItemRepository;
 import com.seul.jpa.study.repository.MemberRepository;
 import com.seul.jpa.study.repository.OrderRepository;
+import com.seul.jpa.study.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,6 +27,7 @@ public class OrderService {
     /**
      * 주문
      **/
+    @Transactional
     public Long order(long memberId, long itemId, int count) {
 
         Member member = memberRepository.findOne(memberId);
@@ -47,5 +51,9 @@ public class OrderService {
     public void cancelOrder(long orderId) {
         Order order = orderRepository.findOne(orderId);
         order.cancel();
+    }
+
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
     }
 }
