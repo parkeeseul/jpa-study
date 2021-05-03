@@ -1,5 +1,6 @@
 package com.seul.jpa.study.domain.item;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("B")
 @NoArgsConstructor
+@Getter
 public class Book extends Item {
 
     private String author;
