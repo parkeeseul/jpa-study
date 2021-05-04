@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 public class Member {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "member_id")
     private long id;
 
+    @NotEmpty
     private String name;
 
     @Embedded
@@ -32,5 +35,9 @@ public class Member {
 
     public static Member of(String name, Address address) {
         return new Member(name, address);
+    }
+
+    public static Member of(String name) {
+        return new Member(name, null);
     }
 }
