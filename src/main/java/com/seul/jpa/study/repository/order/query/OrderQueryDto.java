@@ -3,11 +3,13 @@ package com.seul.jpa.study.repository.order.query;
 import com.seul.jpa.study.domain.Address;
 import com.seul.jpa.study.domain.OrderStatus;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(of = "orderId")
 public class OrderQueryDto {
 
     private long orderId;
@@ -23,5 +25,14 @@ public class OrderQueryDto {
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.address = address;
+    }
+
+    public OrderQueryDto(long orderId, String name, LocalDateTime orderDate, OrderStatus orderStatus, Address address, List<OrderItemQueryDto> orderItems) {
+        this.orderId = orderId;
+        this.name = name;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.address = address;
+        this.orderItems = orderItems;
     }
 }
