@@ -3,7 +3,6 @@ package com.seul.jpa.study.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,7 +26,8 @@ public class Order {
     @JoinColumn(name = "member_id") // 연관 관계의 주인
     private Member member;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // Lifecycle 이 같을 때 cascade가 의미가 있다( Order 에서만 OrderItem을 사용한다)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    // Lifecycle 이 같을 때 cascade가 의미가 있다( Order 에서만 OrderItem을 사용한다)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
@@ -72,9 +72,9 @@ public class Order {
 
     /**
      * 주문 취소
-     * **/
+     **/
     public void cancel() {
-        if(this.delivery.getStatus() == DeliveryStatus.COMP) {
+        if (this.delivery.getStatus() == DeliveryStatus.COMP) {
             throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
         }
 
@@ -86,7 +86,7 @@ public class Order {
 
     /**
      * 전체 주문 가격 조회
-     * **/
+     **/
     public int getTotalPrice() {
         return orderItems.stream()
                 .mapToInt(OrderItem::getTotalPrice)
